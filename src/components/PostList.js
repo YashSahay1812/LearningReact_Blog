@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import { fetchPosts } from "../actions";
+import UserHeader from "./UserHeader";
 
 const PostList = (props) => {
     
@@ -12,6 +13,7 @@ const PostList = (props) => {
                     <div className="description">
                         <h2>{post.title}</h2>
                         <p>{post.body}</p>
+                        <UserHeader userId={post.userId} />
                     </div>
                 </div>
             </div>
@@ -26,7 +28,7 @@ const PostList = (props) => {
 
     return (
         <div className="ui relaxed divided list">
-            {renderedList};
+            {renderedList}
         </div>
     );
 
