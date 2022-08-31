@@ -1,3 +1,4 @@
+import _ from "lodash";
 import jsonPlaceholder from "../apis/jsonPlaceholder";
 
 export const fetchPosts = () => {
@@ -18,4 +19,13 @@ export const fetchUser = (userId) => {
         dispatch({type: "FETCH_USER", payload: response.data});
     }
 
+}
+
+// We will be using(directly) only this action creator only
+export const fetchPostsAndUsers = () => {
+    return async (dispatch, getState) => {
+        await dispatch(fetchPosts());
+        const uniqUserIds = _.uniq(_.map(getState().posts, 'userId'));
+        uniqUserIds.forEach(id => dispatch(fetchUser(id)));
+    }
 }
