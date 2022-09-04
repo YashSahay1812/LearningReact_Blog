@@ -13,4 +13,4 @@ const mapStateToProps = (state, ownProps) => {
     return {user: state.users.find(user => user.id === ownProps.userId)};
 }
 
-export default connect(mapStateToProps,{})(UserHeader);
+export default connect(mapStateToProps)(UserHeader);
